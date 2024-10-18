@@ -1,3 +1,6 @@
+"""ChatOpalAssistant chat model."""
+
+
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator, Dict, Iterator, List, Optional
 
@@ -26,21 +29,28 @@ from typing_extensions import Self
 DEFAULT_REQUEST_TIMEOUT = 60.0
 
 class ChatOpalAssistant(BaseChatModel):
-    """A custom chat model that echoes the first `n` characters of the input.
-
-    When contributing an implementation to LangChain, carefully document
-    the model including the initialization parameters, include
-    an example of how to initialize the model and include any relevant
-    links to the underlying models documentation or API.
+    """ChatOpalAssistant chat model.
 
     Example:
-
         .. code-block:: python
 
-            model = CustomChatModel(n=2)
-            result = model.invoke([HumanMessage(content="hello")])
-            result = model.batch([[HumanMessage(content="hello")],
-                                [HumanMessage(content="world")]])
+            import os
+            os.environ["OPENAI_API_KEY"] = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            os.environ["OPENLINK_API_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+            from langchain_opal import ChatOpal
+
+            model = ChatOpalAssistant()
+
+    Invoke:
+        .. code-block:: python
+
+            messages = [
+                ("system", "You are a helpful translator. Translate the user sentence to French."),
+                ("human", "I love programming."),
+            ]
+            model.invoke(messages)
+
     """
 
     model_name: Optional[str] = None

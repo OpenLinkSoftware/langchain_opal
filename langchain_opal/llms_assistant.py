@@ -47,22 +47,21 @@ DEFAULT_REQUEST_TIMEOUT = 60.0
 
 
 class OpalAssistantLLM(LLM):
-    """A custom chat model that echoes the first `n` characters of the input.
-
-    When contributing an implementation to LangChain, carefully document
-    the model including the initialization parameters, include
-    an example of how to initialize the model and include any relevant
-    links to the underlying models documentation or API.
+    """OpalAssistantLLM large language models.
 
     Example:
-
         .. code-block:: python
 
-            model = CustomChatModel(n=2)
-            result = model.invoke([HumanMessage(content="hello")])
-            result = model.batch([[HumanMessage(content="hello")],
-                            [HumanMessage(content="world")]])
+            import os
+            os.environ["OPENAI_API_KEY"] = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            os.environ["OPENLINK_API_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+            from langchain_opal import OpalAssistantLLM
+
+            model = OpalAssistantLLM()
+            model.invoke("Come up with 10 names for a song about parrots")
     """
+
     model_name: Optional[str] = None
     """Model name to use."""
 
