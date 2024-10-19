@@ -72,7 +72,7 @@ llm.invoke("The meaning of life is")
 #### `OpalAssistantLLM` parameters 
 ```python
   OpalAssistantLLM(
-    model_name="gpt-4o",
+    model_name=None,
     temperature=0.2,
     top_p=0.5,
     api_base="https://linkeddata.uriburner.com",
@@ -82,7 +82,7 @@ llm.invoke("The meaning of life is")
   )
 ```
  Default values:
-- model_name       Default **str** = `"gpt-4o"`
+- model_name       Default **str** = `None`
 - temperature      Default **float** = `0.2`
 - top_p            Default **float** = `0.5`
 - api_base         Default **str** = `"https://linkeddata.uriburner.com"`
@@ -156,7 +156,7 @@ llm.invoke(messages)
 #### `ChatOpalAssistant` parameters 
 ```python
   ChatOpalAssistant(
-    model_name="gpt-4o",
+    model_name=None,
     temperature=0.2,
     top_p=0.5,
     api_base="https://linkeddata.uriburner.com",
@@ -166,7 +166,7 @@ llm.invoke(messages)
   )
 ```
  Default values:
-- model_name       Default **str** = `"gpt-4o"`
+- model_name       Default **str** = `None`
 - temperature      Default **float** = `0.2`
 - top_p            Default **float** = `0.5`
 - api_base         Default **str** = `"https://linkeddata.uriburner.com"`
