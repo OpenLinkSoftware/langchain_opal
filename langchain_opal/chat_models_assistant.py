@@ -38,7 +38,7 @@ class ChatOpalAssistant(BaseChatModel):
             os.environ["OPENAI_API_KEY"] = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             os.environ["OPENLINK_API_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-            from langchain_opal import ChatOpal
+            from langchain_opal import ChatOpalAssistant
 
             model = ChatOpalAssistant()
 
