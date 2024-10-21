@@ -4,6 +4,7 @@
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator, Dict, Iterator, List, Optional
 
+import os
 import httpx
 from httpx import Timeout
 

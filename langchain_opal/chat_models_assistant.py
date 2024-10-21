@@ -4,6 +4,7 @@
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator, Dict, Iterator, List, Optional
 
+import os
 import httpx
 from httpx import Timeout
 
@@ -351,9 +352,9 @@ class ChatOpalAssistant(BaseChatModel):
             # costs for the given LLM.)
             "model_name": self.model_name,
             "api_base": self.api_base,
-            "finetune": self.finetune,
+            "assistant_id": self.assistant_id,
             "funcs_list": self.funcs_list,
-            "continue_chat": self.continue_chat,
+            "continue_thread": self.continue_thread,
         }
 
     def _get_ls_params(
@@ -362,7 +363,7 @@ class ChatOpalAssistant(BaseChatModel):
         """Get standard params for tracing."""
         params = self._get_invocation_params(stop=stop, **kwargs)
         ls_params = LangSmithParams(
-            ls_provider="opal",
+            ls_provider="opal_assistant",
             ls_model_name=self.model_name,
             ls_model_type="chat",
             ls_temperature=params.get("temperature", self.temperature),
