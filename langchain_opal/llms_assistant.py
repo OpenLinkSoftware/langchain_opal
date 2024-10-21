@@ -145,6 +145,26 @@ class OpalAssistantLLM(LLM):
             response.raise_for_status()
             return response.json()
 
+    @staticmethod
+    def get_functions_list(
+        api_base: Optional[str] = "https://linkeddata.uriburner.com",
+        ) -> []:
+        openlink_api_key = os.environ["OPENLINK_API_KEY"]
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {openlink_api_key}",
+        }
+
+        _url = f"{api_base}/chat/api/listFunctions"
+        with httpx.Client(timeout=Timeout(DEFAULT_REQUEST_TIMEOUT)) as client:
+            response = client.get(
+                url=_url,
+                headers=headers
+            )
+            response.raise_for_status()
+            return response.json()
+
     @property
     def _default_params(self) -> Dict[str, Any]:
         """Get the default parameters for calling Opal."""
