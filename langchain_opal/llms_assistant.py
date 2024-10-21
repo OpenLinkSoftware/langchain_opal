@@ -87,7 +87,7 @@ class OpalAssistantLLM(LLM):
     """Functions list"""
 
     request_timeout: float = DEFAULT_REQUEST_TIMEOUT
-    """The timeout for making http request to llamafile API server"""
+    """The timeout for making http request to OPAL API server"""
 
     openlink_api_key: SecretStr = Field(
         alias="openlink_api_key",
@@ -125,6 +125,26 @@ class OpalAssistantLLM(LLM):
     continue_thread: bool = False
 
 
+    @staticmethod
+    def get_assistants_list(
+        api_base: Optional[str] = "https://linkeddata.uriburner.com",
+        ) -> []:
+        openlink_api_key = os.environ["OPENLINK_API_KEY"]
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {openlink_api_key}",
+        }
+
+        _url = f"{api_base}/chat/api/assistants"
+        with httpx.Client(timeout=Timeout(DEFAULT_REQUEST_TIMEOUT)) as client:
+            response = client.get(
+                url=_url,
+                headers=headers
+            )
+            response.raise_for_status()
+            return response.json()
+
     @property
     def _default_params(self) -> Dict[str, Any]:
         """Get the default parameters for calling Opal."""
@@ -133,7 +153,7 @@ class OpalAssistantLLM(LLM):
             "temperature": self.temperature,
             "top_p": self.top_p,
         }
-        if len(self.funcs_list)>0:
+        if self.funcs_list is not None and len(self.funcs_list)>0:
             payload["functions"] = self.funcs_list
 
         if self.model_name is not None and len(self.model_name)>0:
@@ -309,7 +329,7 @@ class OpalAssistantLLM(LLM):
         self, stop: Optional[List[str]] = None, **kwargs: Any
     ) -> LangSmithParams:
         """Get standard params for tracing."""
-        params = self._get_invocation_params(stop=stop, **kwargs)
+        params = super()._get_ls_params(stop=stop, **kwargs)
         ls_params = LangSmithParams(
             ls_provider="opal_assistant",
             ls_model_name=self.model_name,
@@ -318,6 +338,5 @@ class OpalAssistantLLM(LLM):
         if ls_stop := stop or params.get("stop", None) or self.stop:
             ls_params["ls_stop"] = ls_stop
         return ls_params
-
 
 

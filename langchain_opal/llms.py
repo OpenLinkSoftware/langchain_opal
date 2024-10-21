@@ -86,7 +86,7 @@ class OpalLLM(LLM):
     """Functions list"""
 
     request_timeout: float = DEFAULT_REQUEST_TIMEOUT
-    """The timeout for making http request to llamafile API server"""
+    """The timeout for making http request to OPAL API server"""
 
     openlink_api_key: SecretStr = Field(
         alias="openlink_api_key",
@@ -122,6 +122,67 @@ class OpalLLM(LLM):
 
     _chat_id: str = None
     continue_chat: bool = False
+
+
+    @staticmethod
+    def get_functions_list(
+        api_base: Optional[str] = "https://linkeddata.uriburner.com",
+        ) -> []:
+        openlink_api_key = os.environ["OPENLINK_API_KEY"]
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {openlink_api_key}",
+        }
+
+        _url = f"{api_base}/chat/api/listFunctions"
+        with httpx.Client(timeout=Timeout(DEFAULT_REQUEST_TIMEOUT)) as client:
+            response = client.get(
+                url=_url,
+                headers=headers
+            )
+            response.raise_for_status()
+            return response.json()
+
+    @staticmethod
+    def get_finetunes_list(
+        api_base: Optional[str] = "https://linkeddata.uriburner.com",
+        ) -> []:
+        openlink_api_key = os.environ["OPENLINK_API_KEY"]
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {openlink_api_key}",
+        }
+
+        _url = f"{api_base}/chat/api/listFineTune"
+        with httpx.Client(timeout=Timeout(DEFAULT_REQUEST_TIMEOUT)) as client:
+            response = client.get(
+                url=_url,
+                headers=headers
+            )
+            response.raise_for_status()
+            return response.json()
+
+    @staticmethod
+    def get_models_list(
+        api_base: Optional[str] = "https://linkeddata.uriburner.com",
+        ) -> []:
+        openlink_api_key = os.environ["OPENLINK_API_KEY"]
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {openlink_api_key}",
+        }
+
+        _url = f"{api_base}/chat/api/getModels"
+        with httpx.Client(timeout=Timeout(DEFAULT_REQUEST_TIMEOUT)) as client:
+            response = client.get(
+                url=_url,
+                headers=headers
+            )
+            response.raise_for_status()
+            return response.json()
 
 
     @property
