@@ -33,10 +33,7 @@ dependencies = [
 
 [project.urls]
 # Homepage = "https://example.com"
-# Documentation = "https://readthedocs.org"
-Repository = "https://github.com/OpenLinkSoftware/llama-index-llms-opal"
-# Issues = "https://github.com/me/spam/issues"
-# Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+Repository = "https://github.com/OpenLinkSoftware/langchain_opal"
 
 [tool.setuptools.packages.find]
 where = ["."]
