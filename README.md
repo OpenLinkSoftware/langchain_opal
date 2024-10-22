@@ -1,7 +1,7 @@
 # langchain_opal
 Connects Langchain to AI Agents built and deployed using the OpenLink AI Layer (OPAL), leveraging its loosely coupled Data Spaces (including databases, knowledge graphs, and documents).
 
-![Data Twingler AI Agent Demo](https://openlinksw.com/data/gifs/langchain-opal-virtuoso-support-agent-demo-1.gif)
+![Data Twingler AI Agent Demo](https://openlinksw.com/data/gifs/langchain-opal-virtuoso-support-agent-demo-2.gif)
 
 ## Installation
 
