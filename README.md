@@ -4,7 +4,6 @@ Connects Langchain to AI Agents built and deployed using the OpenLink AI Layer (
 ![Data Twingler AI Agent Demo](https://openlinksw.com/data/gifs/langchain-opal-virtuoso-support-agent-demo-2.gif)
 
 ## Installation
-
 ```bash
 pip install -U git+https://github.com/OpenLinkSoftware/langchain_opal.git
 
@@ -15,13 +14,13 @@ pip install -U git+https://github.com/OpenLinkSoftware/langchain_opal.git
 - The UI for OPALAssistant model  https://linkeddata.uriburner.com/assist/
 
 
-## How to get OPENLINK_API_KEY
+## How to obtain an OPENLINK_API_KEY
 Visit the API Key Generation Page at: https://linkeddata.uriburner.com/oauth/applications.vsp
 
-## LLMS models
+## LLM Model Bindings
 
 ### OpalLLM
-`OpalLLM` class exposes LLMs from OPAL.
+`OpalLLM` class binds LLMs to OPAL.
 
 ```python
 import os
@@ -94,7 +93,7 @@ llm.invoke("The meaning of life is")
 
 ## Chat Models
 ### ChatOpal
-`ChatOpal` class exposes chat model from OPAL.
+`ChatOpal` class provides an OPAL Chat Module bound to a Completions API (e.g., the OpenAI Completions API).
 
 ```python
 import os
@@ -137,7 +136,7 @@ llm.invoke(messages)
 
 
 ### ChatOpalAssistant
-`ChatOpalAssistant` class exposes chat model from OPALAssistant.
+`ChatOpalAssistant` provides an OPAL Assistant Chat Module bound to an Assistants API (e.g., the OpenAI Assistants API).
 
 ```python
 import os
@@ -175,5 +174,5 @@ llm.invoke(messages)
 - assistant_id     Default **str** = `"asst_IcfB5bT1ep4SQW5vbNFChnX4"`
 - request_timeout  Default **float** = DEFAULT_REQUEST_TIMEOUT=`60.0`
 
-
-
+# Live Demonstrations via Google Collab
+* [Data Twingler and Virtuoso Support Agents Demo](https://colab.research.google.com/drive/1s-oHR-kgG8Ki_v_VJ0Eqs9W9J7VGOhEv?usp=sharing)
